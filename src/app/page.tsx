@@ -74,7 +74,7 @@ const LoginForm = () => {
                     />
                 </div>
                 {error && <p className="text-sm text-red-500">{error}</p>}
-                <button type="submit" className="w-full">
+                <button type="submit" className="w-full bg-sky-600 text-neutral-50">
                 Login
                 </button>
                 <p className="text-center text-sm">
