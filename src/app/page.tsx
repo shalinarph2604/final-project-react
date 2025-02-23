@@ -36,8 +36,6 @@ const LoginForm = () => {
     e.preventDefault()
     setError("")
 
-    // Here you would typically handle the login logic
-    // For this example, we'll just simulate a login attempt
     if (formData.email === "user@example.com" && formData.password === "password") {
       alert("Login successful!")
     } else {
