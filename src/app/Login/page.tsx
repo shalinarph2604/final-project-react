@@ -4,7 +4,7 @@ import React from 'react'
 // import OrderList from "./components/OrderList/OrderList";
 // import RestaurantDetail from "./components/RestaurantDetail/RestaurantDetail";
 // import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
-import "./globals.css";
+// import "./globals.css";
 // import axios from 'axios'
 import { useState, type FormEvent, type ChangeEvent } from "react"
 // import { Button } from "@/components/ui/button"
