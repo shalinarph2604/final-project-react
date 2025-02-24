@@ -71,7 +71,7 @@ interface RegisterFormData {
                 </button>
                 <p className="text-center text-sm">
                 Already have an account?{" "}
-                    <Link href="/Login" className="text-blue-500 hover:underline">
+                    <Link href="/login" className="text-blue-500 hover:underline">
                     Log in
                     </Link>
                 </p>

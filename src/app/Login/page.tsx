@@ -36,11 +36,13 @@ const LoginForm = () => {
     e.preventDefault()
     setError("")
 
-    if (formData.username === "username" && formData.password === "password") {
-      alert("Login successful!")
-    } else {
-      setError("Invalid email or password")
-    }
+    console.log(formData.username, formData.password)
+
+    // if (formData.username === "username" && formData.password === "password") {
+    //   alert("Login successful!")
+    // } else {
+    //   setError("Invalid email or password")
+    // }
   }
 
   return (
@@ -79,7 +81,7 @@ const LoginForm = () => {
                 </button>
                 <p className="text-center text-sm">
                 Don't have an account?{" "}
-                    <Link href="/Register" className="text-blue-500 hover:underline">
+                    <Link href="/r'egister" className="text-blue-500 hover:underline">
                     Sign up
                     </Link>
                 </p>
