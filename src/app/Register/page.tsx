@@ -1,8 +1,9 @@
 'use client'
-import { Stringifier } from 'postcss'
+// import { Stringifier } from 'postcss'
 import React from 'react'
 import { useState, type FormEvent, type ChangeEvent } from "react"
 import Link from "next/link"
+import axios from 'axios'
 
 interface RegisterFormData {
     username: string
@@ -15,6 +16,7 @@ interface RegisterFormData {
         password: "",
     })
     const [error, setError] = useState<string>("")
+    const [success, setSuccess] = useState<string>("")
       
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -27,11 +29,32 @@ interface RegisterFormData {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setError("")
+        setSuccess("")
     
-        if (formData.username === "username" && formData.password === "password") {
-          alert("Login successful!")
-        } else {
-          setError("Invalid email or password")
+        if (formData.password !== formData.password) {
+          setError("Passwords do not match")
+          return
+        }
+    
+        try {
+          // Remove confirmPassword before sending to API
+        //   const { password, ...dataToSend } = formData
+    
+          const response = await axios.post("https://delta-indie.vercel.app/api/auth/register", formData)
+          console.log("Registration successful:", response.data)
+          setSuccess("Registration successful! You can now log in.")
+    
+          // Reset form after successful registration
+          setFormData({
+            username: "",
+            password: "",
+          })
+        } catch (err) {
+          if (axios.isAxiosError(err)) {
+            setError(err.response?.data?.message || "An error occurred during registration")
+          } else {
+            setError("An unexpected error occurred")
+          }
         }
       }
 
@@ -66,6 +89,8 @@ interface RegisterFormData {
                     />
                 </div>
                 {error && <p className="text-sm text-red-500">{error}</p>}
+                {success && <p className="text-green-500">{success}</p>}
+
                 <button type="submit" className="w-full bg-sky-600 text-neutral-50 rounded-lg p-1">
                 Register
                 </button>

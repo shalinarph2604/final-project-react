@@ -1,15 +1,8 @@
 'use client'
 import React from 'react'
-// import HomePage from "./components/HomePage/HomePage";
-// import OrderList from "./components/OrderList/OrderList";
-// import RestaurantDetail from "./components/RestaurantDetail/RestaurantDetail";
-// import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 // import "./globals.css";
-// import axios from 'axios'
-import { useState, type FormEvent, type ChangeEvent } from "react"
-// import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
+import axios from 'axios'
+import { useState, type FormEvent, type ChangeEvent } from 'react'
 import Link from "next/link"
 
 interface LoginFormData {
@@ -36,13 +29,17 @@ const LoginForm = () => {
     e.preventDefault()
     setError("")
 
-    console.log(formData.username, formData.password)
-
-    // if (formData.username === "username" && formData.password === "password") {
-    //   alert("Login successful!")
-    // } else {
-    //   setError("Invalid email or password")
-    // }
+    try {
+      const response = await axios.post("https://delta-indie.vercel.app/api/auth/login", formData)
+      console.log("Login successful:", response.data)
+      // Handle successful login (e.g., store token, redirect)
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || "An error occurred during login")
+      } else {
+        setError("An unexpected error occurred")
+      }
+    }
   }
 
   return (
@@ -80,8 +77,8 @@ const LoginForm = () => {
                 Login
                 </button>
                 <p className="text-center text-sm">
-                Don't have an account?{" "}
-                    <Link href="/r'egister" className="text-blue-500 hover:underline">
+                    Don't have an account? {""}
+                    <Link href="/register" className="text-blue-500 hover:underline">
                     Sign up
                     </Link>
                 </p>
